@@ -4,17 +4,17 @@
 
 export class User {
 
-  private _name: string;
+  private _username: string;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
   }
 
-  public get name(): string {
-    return this._name;
+  public get username(): string {
+    return this._username;
   }
 
-  public set name(n: string) {
-    this._name = n;
+  public set username(n: string) {
+    this._username = n;
   }
 }

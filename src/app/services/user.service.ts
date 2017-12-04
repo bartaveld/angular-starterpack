@@ -10,7 +10,7 @@ import { User } from '../models/user.model';
 export class UserService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private serverUrl = environment.serverUrl + '/users'; // URL to web api
+  private serverUrl = environment.serverUrl + '/user'; // URL to web api
   private users: User[] = [];
 
   //
