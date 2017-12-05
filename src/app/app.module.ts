@@ -1,3 +1,4 @@
+import { LoginService } from './services/login.service';
 import { UserService } from './services/user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,12 +10,14 @@ import { HttpModule, Http } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     HeaderComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,8 @@ import { HeaderComponent } from './components/header/header.component';
     BrowserAnimationsModule
   ],
   providers: [
-    UserService
+    UserService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
