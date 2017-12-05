@@ -1,0 +1,70 @@
+.sidenav {
+  height: 100vh;
+  width: 5rem;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: #E0E0E0;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.sideoptions {
+  z-index: 1;
+  height: 5rem;
+  width: 5rem;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  background-color: #BDBDBD;
+  text-align: center;
+}
+
+b {
+  padding: 8px 8px 8px;
+  color: white;
+  font-size: 2rem;
+  display: block;
+}
+
+.round{
+  cursor: pointer;
+  height: 3.5rem;
+  width: 3.5rem;
+  line-height: 3.5rem;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 50%;
+  background: #BDBDBD;
+  transition: border-radius 0.2s, background 0.2s;
+  margin-bottom: 1rem;
+}
+
+.round:hover {
+  border-radius: 30%;
+  background: #039BE5;
+}
+
+.logout {
+  margin-top: 0.75rem;
+  background: #ef5350;
+}
+
+.logout:hover {
+  background: #d32f2f;
+}
+
+div.active{
+  border-radius: 30%;
+  background: #29B6F6;
+}
+
+span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+*:focus {
+  outline: none;
+}

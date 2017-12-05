@@ -16,9 +16,6 @@ export class LoginService {
   private LOGGEDIN = 'loggedIn';
   private TOKEN = 'token';
 
-  private _loggin: Login;
-  private _token: string;
-
   constructor(private http: Http) { }
 
   public doLogin(username: string, password: string): Promise<Login> {
@@ -27,6 +24,7 @@ export class LoginService {
       .then(response => {
         this.setLoggedIn(true);
         const login = response.json() as Login;
+        this.setUsername(username);
         this.setToken(login.token);
         return login;
       })
@@ -49,8 +47,12 @@ export class LoginService {
     return localStorage.getItem(this.LOGGEDIN) === 'true';
   }
 
-  public getLoggin(): Login {
-    return this._loggin;
+  public getUsername(): string {
+    return localStorage.getItem('username');
+  }
+
+  private setUsername(value: string) {
+    localStorage.setItem('username', value);
   }
 
   public getToken(): string {
@@ -63,10 +65,6 @@ export class LoginService {
     } else {
       localStorage.setItem(this.LOGGEDIN, 'false');
     }
-  }
-
-  private setLoggin(login: Login): void {
-    this._loggin = login;
   }
 
   private setToken(value: string): void {
