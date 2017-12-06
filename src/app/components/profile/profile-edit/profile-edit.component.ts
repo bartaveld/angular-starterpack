@@ -14,6 +14,7 @@ export class ProfileEditComponent implements OnInit {
   public firstName: string;
   public lastName: string;
   public username: string;
+  public imagePath: string;
   public login: Login;
   public isUpdating = false;
 
@@ -29,6 +30,7 @@ export class ProfileEditComponent implements OnInit {
           this.username = login.username;
           this.firstName = login.firstName;
           this.lastName = login.lastName;
+          this.imagePath = login.imagePath;
       });
   }
 
@@ -36,6 +38,7 @@ export class ProfileEditComponent implements OnInit {
     this.isUpdating = true;
     this.login.firstName = this.firstName;
     this.login.lastName = this.lastName;
+    this.login.imagePath = this.imagePath;
     this.logingService.updateLogin(this.login)
       .then(() => {
         this.router.navigate(['..'], {relativeTo: this.route});

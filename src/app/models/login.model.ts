@@ -3,7 +3,7 @@ export class Login {
   private _username: string;
   private _firstName: string;
   private _lastName: string;
-  private _token: string;
+  private _imagePath: string;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
@@ -31,6 +31,14 @@ export class Login {
 
   public set lastName(n: string) {
     this.lastName = n;
+  }
+
+  public get imagePath() {
+    return this._imagePath;
+  }
+
+  public set imagePath(n: string) {
+    this._imagePath = n;
   }
 
   public setName(first: string, last: string) {

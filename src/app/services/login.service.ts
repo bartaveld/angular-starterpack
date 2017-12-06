@@ -43,7 +43,7 @@ export class LoginService {
   }
 
   public updateLogin(newLogin: Login): Promise<Login> {
-    return this.http.put(this.serverUrl + '/users', {firstName: newLogin.firstName, lastName: newLogin.lastName}
+    return this.http.put(this.serverUrl + '/users', {firstName: newLogin.firstName, lastName: newLogin.lastName, imagePath: newLogin.imagePath}
     , { headers: this.getHeaders()})
       .toPromise()
       .then(response => {

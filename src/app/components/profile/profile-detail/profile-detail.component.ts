@@ -9,7 +9,7 @@ import { LoginService } from '../../../services/login.service';
 })
 export class ProfileDetailComponent implements OnInit {
 
-  public login = { username: '', firstName: '', lastName: '' };
+  public login = { username: '', firstName: '', lastName: '', imagePath: '' };
   public isLoading = true;
 
   constructor(private loginService: LoginService) { }

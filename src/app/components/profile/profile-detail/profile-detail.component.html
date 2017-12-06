@@ -2,7 +2,12 @@
 
 <div class="profileinfo">
   <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-1">
+        <div class="round" [ngStyle]="{'background-image': 'url(' + login.imagePath + ')'}">
+          <b class="letter" *ngIf="login.imagePath === ''">{{login.firstName.charAt(0)}}</b>
+        </div>
+    </div>
+    <div class="col-sm-7">
       <div class="profiletext">
         <h1>{{login.firstName}}  {{login.lastName}}</h1>
         <h2>@{{login.username}}</h2>

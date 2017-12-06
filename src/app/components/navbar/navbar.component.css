@@ -39,11 +39,14 @@ b {
   background: #616161;
   transition: border-radius 0.2s, background 0.2s;
   margin-bottom: 1rem;
+  background-size: cover;
 }
 
 .round:hover {
   border-radius: 30%;
   background: #039BE5;
+  box-shadow: 0 0 1rem #039BE5;
+  background-size: cover;
 }
 
 .logout {
@@ -53,11 +56,14 @@ b {
 
 .logout:hover {
   background: #d32f2f;
+  box-shadow: 0 0 1rem #d32f2f;
 }
 
 div.active{
   border-radius: 30%;
   background: #29B6F6;
+  box-shadow: 0 0 1rem #29B6F6;
+  background-size: cover;
 }
 
 span {
