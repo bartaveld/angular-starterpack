@@ -1,3 +1,4 @@
+import { Login } from './../../models/login.model';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 
@@ -8,12 +9,17 @@ import { LoginService } from '../../services/login.service';
 })
 export class ProfileComponent implements OnInit {
 
-  public username: string;
+  public login = { username: '', firstName: '', lastName: '' };
+  public isLoading = true;
 
   constructor(private loginService: LoginService) { }
 
   ngOnInit() {
-    this.username = this.loginService.getUsername();
+    this.loginService.getLogin()
+      .then((result) => {
+        this.isLoading = false;
+        this.login = result;
+      });
   }
 
 }

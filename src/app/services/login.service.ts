@@ -1,3 +1,4 @@
+import { setTimeout } from 'timers';
 import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { environment } from '../../environments/environment';
@@ -11,21 +12,30 @@ import { Login } from '../models/login.model';
 export class LoginService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private serverUrl = environment.serverUrl + '/login';
+  private serverUrl = environment.serverUrl;
 
+  private login: Login;
   private LOGGEDIN = 'loggedIn';
   private TOKEN = 'token';
+  private USERNAME = 'username';
 
   constructor(private http: Http) { }
 
   public doLogin(username: string, password: string): Promise<Login> {
-    return this.http.post(this.serverUrl, {username: username, password: password})
+    return this.http.post(this.serverUrl + '/login', {username: username, password: password}, { headers: this.getHeaders()})
       .toPromise()
       .then(response => {
+        const responseJson = response.json();
+
         this.setLoggedIn(true);
-        const login = response.json() as Login;
-        this.setUsername(username);
-        this.setToken(login.token);
+        this.setToken(response.json().token);
+        this.setUsername(response.json().username);
+
+        delete responseJson.token;
+        delete responseJson.login;
+
+        const login = responseJson as Login;
+        this.setLogin(login);
         return login;
       })
       .catch(error => {
@@ -47,16 +57,44 @@ export class LoginService {
     return localStorage.getItem(this.LOGGEDIN) === 'true';
   }
 
-  public getUsername(): string {
-    return localStorage.getItem('username');
+  public getLogin(): Promise<Login> {
+    if (this.login === undefined) {
+      return this.http.get(this.serverUrl + '/users/' + this.getUsername(), { headers: this.getHeaders() })
+      .toPromise()
+      .then(response => {
+        const responseJson = response.json();
+
+        delete responseJson.token;
+        delete responseJson.login;
+
+        const login = responseJson as Login;
+        this.setLogin(login);
+        return login;
+      })
+      .catch(error => {
+        return this.handleError(error);
+      });
+    } else {
+      return new Promise<Login>((resolve, reject) => {
+        resolve(this.login);
+      });
+    }
+  }
+
+  private setLogin(login: Login) {
+    this.login = login;
   }
 
   private setUsername(value: string) {
-    localStorage.setItem('username', value);
+    localStorage.setItem(this.USERNAME, value);
+  }
+
+  private getUsername(): string {
+    return localStorage.getItem(this.USERNAME);
   }
 
   public getToken(): string {
-    return localStorage.getItem('token');
+    return localStorage.getItem(this.TOKEN);
   }
 
   private setLoggedIn(value: boolean): void {
@@ -69,6 +107,10 @@ export class LoginService {
 
   private setToken(value: string): void {
     return localStorage.setItem(this.TOKEN, value);
+  }
+
+  private getHeaders() {
+    return new Headers({ 'Content-Type': 'application/json', 'AuthToken' : this.getToken() });
   }
 
 

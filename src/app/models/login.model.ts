@@ -1,6 +1,8 @@
 export class Login {
 
   private _username: string;
+  private _firstName: string;
+  private _lastName: string;
   private _token: string;
 
   constructor(values: Object = {}) {
@@ -15,11 +17,24 @@ export class Login {
     this._username = n;
   }
 
-  public get token(): string {
-    return this._token;
+  public get firstName() {
+    return this._firstName;
   }
 
-  public set token(n: string) {
-    this._token = n;
+  public set firstName(n: string) {
+    this._firstName = n;
+  }
+
+  public get lastName() {
+    return this._lastName;
+  }
+
+  public set lastName(n: string) {
+    this.lastName = n;
+  }
+
+  public setName(first: string, last: string) {
+    this.firstName = first;
+    this.lastName = last;
   }
 }
