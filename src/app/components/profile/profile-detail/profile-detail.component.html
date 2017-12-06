@@ -1,0 +1,33 @@
+<h1 *ngIf="isLoading">Loading...</h1>
+
+<div class="profileinfo">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="profiletext">
+        <h1>{{login.firstName}}  {{login.lastName}}</h1>
+        <h2>@{{login.username}}</h2>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="profiletext">
+        <h3>Posts 100</h3>
+        <h3>Followers 100</h3>
+        <h3>Following 100</h3>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class="profileoptions">
+        <button class="btn btn-info" routerLink="edit">
+            <b class="fa fa-edit"></b>
+          </button>
+          <button class="btn btn-danger" routerLink="delete">
+            <b class="fa fa-trash-o"></b>
+          </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-profile-detail-posts></app-profile-detail-posts>
+
+

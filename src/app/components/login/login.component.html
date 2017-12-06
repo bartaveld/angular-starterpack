@@ -1,18 +1,19 @@
-<div *ngIf="wrong" class="alert alert-danger">
-  <strong>Something went wrong!</strong> Check your username and password.
+<div class="container">
+  <h1>Login</h1>
+  <div *ngIf="wrong" class="alert alert-danger">
+    <strong>Something went wrong!</strong> Check your username and password.
+  </div>
+
+  <form>
+    <div class="form-group" [ngClass]="{'has-error': wrong}" >
+      <label for="username"> Username </label>
+      <input [(ngModel)]="username" name="username" class="form-control">
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': wrong}" >
+      <label for="password" > Password </label>
+      <input [(ngModel)]="password" name="password" class="form-control" type="password">
+    </div>
+    <button [disabled]="isLoggingIn" class="btn btn-success" type="submit" (click)='login()'> Login </button>
+    <button [disabled]="isLoggingIn" class="btn btn-primary" type="submit" routerLink='../register'> Go register </button>
+  </form>
 </div>
-
-<form>
-  <div class="form-group" [ngClass]="{'has-error': wrong}" >
-    <label for="username"> Username </label>
-    <input [(ngModel)]="username" name="username" class="form-control">
-  </div>
-  <div class="form-group" [ngClass]="{'has-error': wrong}" >
-    <label for="password" > Password </label>
-    <input [(ngModel)]="password" name="password" class="form-control" type="password">
-  </div>
-  <button [disabled]="isLoggingIn" class="btn btn-success" type="submit" (click)='login()'> Login </button>
-</form>
-
-<form>
-</form>

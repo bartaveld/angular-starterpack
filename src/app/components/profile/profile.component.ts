@@ -1,6 +1,4 @@
-import { Login } from './../../models/login.model';
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,17 +7,9 @@ import { LoginService } from '../../services/login.service';
 })
 export class ProfileComponent implements OnInit {
 
-  public login = { username: '', firstName: '', lastName: '' };
-  public isLoading = true;
-
-  constructor(private loginService: LoginService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.loginService.getLogin()
-      .then((result) => {
-        this.isLoading = false;
-        this.login = result;
-      });
   }
 
 }

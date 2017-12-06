@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Editing {{username}}</h1>
+  <form>
+    <div class="form-group" [ngClass]="{'has-error': wrong}" >
+      <label for="firstName"> First name </label>
+      <input [(ngModel)]="firstName" name="firstName" class="form-control" type="text">
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': wrong}" >
+      <label for="password" > Last name </label>
+      <input [(ngModel)]="lastName" name="lastName" class="form-control" type="text">
+    </div>
+    <button [disabled]="isUpdating" class="btn btn-success" type="submit" (click)='updateUser()'> Update profile </button>
+    <button [disabled]="isUpdating" class="btn btn-primary" type="submit" routerLink=".."> Go back </button>
+  </form>
+</div>
+

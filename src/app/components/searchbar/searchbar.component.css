@@ -1,11 +1,14 @@
 .searchbar {
+  z-index: 1;
  top: 0;
  left: 5rem;
  position: fixed;
- background-color: #E0E0E0;
+ background-color: #212121;
  height: 3rem;
  width: 95%;
  line-height: 2rem;
+ box-shadow: 0 4px 2px -2px black;
+
 }
 
 .searchinput{

@@ -10,9 +10,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileDetailComponent } from './components/profile/profile-detail/profile-detail.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { ProfileEditComponent } from './components/profile/profile-edit/profile-edit.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileDeleteComponent } from './components/profile/profile-delete/profile-delete.component';
+import { MainComponent } from './components/main/main.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ProfileDetailPostsComponent } from './components/profile/profile-detail/profile-detail-posts/profile-detail-posts.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +26,14 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
     LoginComponent,
     HomeComponent,
     NavbarComponent,
-    ProfileComponent,
+    ProfileDetailComponent,
     SearchbarComponent,
+    ProfileEditComponent,
+    ProfileComponent,
+    ProfileDeleteComponent,
+    MainComponent,
+    RegisterComponent,
+    ProfileDetailPostsComponent,
   ],
   imports: [
     BrowserModule,

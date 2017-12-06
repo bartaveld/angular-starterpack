@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Register</h1>
+  <div *ngIf="usernameExists" class="alert alert-danger">
+    <strong>Something went wrong!</strong> Username may already exists.
+  </div>
+  <form *ngIf="!didRegister">
+    <div class="form-group" [ngClass]="{'has-error': wrong}" >
+      <label for="username"> Username </label>
+      <input [(ngModel)]="username" name="username" class="form-control">
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': wrong}" >
+      <label for="password" > Password </label>
+      <input [(ngModel)]="password" name="password" class="form-control" type="password">
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': wrong}" >
+      <label for="firstName" > First name </label>
+      <input [(ngModel)]="firstName" name="firstName" class="form-control" type="text">
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': wrong}" >
+      <label for="lastName" > Last name </label>
+      <input [(ngModel)]="lastName" name="lastName" class="form-control" type="text">
+    </div>
+    <button [disabled]="isRegistering || !canRegister" class="btn btn-success" type="submit" (click)='register()'> Register </button>
+    <button [disabled]="isRegistering" class="btn btn-primary" type="submit" routerLink='../login'> Go back </button>
+  </form>
+  <div *ngIf="didRegister">
+    <h2>{{username}} is registered!</h2>
+    <button [disabled]="isRegistering" class="btn btn-primary" type="submit" routerLink='../login'> Go login </button>
+  </div>
+</div>

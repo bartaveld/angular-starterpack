@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,13 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
   }
 
   logout() {
     this.loginService.doLogout();
+    this.router.navigate(['login']);
   }
 
 }

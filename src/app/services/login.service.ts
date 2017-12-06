@@ -1,4 +1,3 @@
-import { setTimeout } from 'timers';
 import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { environment } from '../../environments/environment';
@@ -40,6 +39,46 @@ export class LoginService {
       })
       .catch(error => {
         return this.handleError(error);
+      });
+  }
+
+  public updateLogin(newLogin: Login): Promise<Login> {
+    return this.http.put(this.serverUrl + '/users', {firstName: newLogin.firstName, lastName: newLogin.lastName}
+    , { headers: this.getHeaders()})
+      .toPromise()
+      .then(response => {
+        const login = this.login;
+        login.firstName = newLogin.firstName;
+        login.lastName = newLogin.lastName;
+        this.setLogin(login);
+        return login;
+      })
+      .catch(error => {
+        return this.handleError(error);
+      });
+  }
+
+  public deleteLogin(): Promise<Login> {
+    return this.http.delete(this.serverUrl + '/users' , { headers: this.getHeaders()})
+      .toPromise()
+      .then(response => {
+        this.doLogout();
+        return this.login;
+      })
+      .catch(error => {
+        return this.handleError(error);
+      });
+  }
+
+  public doRegister(username: string = '', password: string = '', firstName: string = '', lastName: string = ''): Promise<boolean> {
+    return this.http.post(this.serverUrl + '/users', {username: username, password: password
+      , firstName: firstName, lastName: lastName}, { headers: this.getHeaders() })
+      .toPromise()
+      .then(response => {
+          return true;
+      })
+      .catch(error => {
+        return false;
       });
   }
 
