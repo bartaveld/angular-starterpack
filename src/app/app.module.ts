@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     HomeComponent,
     NavbarComponent,
     ProfileComponent,
+    SearchbarComponent,
   ],
   imports: [
     BrowserModule,

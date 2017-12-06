@@ -1,0 +1,55 @@
+.searchbar {
+ top: 0;
+ left: 5rem;
+ position: fixed;
+ background-color: #E0E0E0;
+ height: 3rem;
+ width: 95%;
+ line-height: 2rem;
+}
+
+.searchinput{
+  left: 67%;
+  width: 30%;
+  height: 2rem;
+  margin-top: 0.5rem;
+  position: fixed;
+}
+
+.searchbtn{
+  left: 97%;
+  top: 0;
+  position: fixed;
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+  margin-top: 0.5rem;
+  margin-left: 0.25rem;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 50%;
+  background: #FFB74D;
+  transition: border-radius 0.2s, background 0.2s;
+  margin-bottom: 1rem;
+}
+
+.searchbtn:hover {
+  border-radius: 30%;
+  background: #FF9800;
+}
+
+b {
+  color: white;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .searchinput {
+      width: 40%;
+      left: 50%;
+  }
+
+  .searchbtn {
+    left: 90%;
+  }
+}
