@@ -1,3 +1,4 @@
+import { HeaderService } from './header.service';
 import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { environment } from '../../environments/environment';
@@ -5,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
 import { Login } from '../models/login.model';
+import { PostsService } from './posts.service';
 
 
 @Injectable()
@@ -18,10 +20,10 @@ export class LoginService {
   private TOKEN = 'token';
   private USERNAME = 'username';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private headerService: HeaderService, private postsService: PostsService) { }
 
   public doLogin(username: string, password: string): Promise<Login> {
-    return this.http.post(this.serverUrl + '/login', {username: username, password: password}, { headers: this.getHeaders()})
+    return this.http.post(this.serverUrl + '/login', {username: username, password: password}, { headers: this.headerService.getHeaders()})
       .toPromise()
       .then(response => {
         const responseJson = response.json();
@@ -44,7 +46,7 @@ export class LoginService {
 
   public updateLogin(newLogin: Login): Promise<Login> {
     return this.http.put(this.serverUrl + '/users', {firstName: newLogin.firstName, lastName: newLogin.lastName, imagePath: newLogin.imagePath}
-    , { headers: this.getHeaders()})
+    , { headers: this.headerService.getHeaders()})
       .toPromise()
       .then(response => {
         const login = this.login;
@@ -59,7 +61,7 @@ export class LoginService {
   }
 
   public deleteLogin(): Promise<Login> {
-    return this.http.delete(this.serverUrl + '/users' , { headers: this.getHeaders()})
+    return this.http.delete(this.serverUrl + '/users' , { headers: this.headerService.getHeaders()})
       .toPromise()
       .then(response => {
         this.doLogout();
@@ -72,7 +74,7 @@ export class LoginService {
 
   public doRegister(username: string = '', password: string = '', firstName: string = '', lastName: string = ''): Promise<boolean> {
     return this.http.post(this.serverUrl + '/users', {username: username, password: password
-      , firstName: firstName, lastName: lastName}, { headers: this.getHeaders() })
+      , firstName: firstName, lastName: lastName}, { headers: this.headerService.getHeaders() })
       .toPromise()
       .then(response => {
           return true;
@@ -85,6 +87,7 @@ export class LoginService {
   public doLogout() {
     this.setLoggedIn(false);
     this.setToken('');
+    this.postsService.clearPosts();
   }
 
   private handleError(error: any): Promise<any> {
@@ -98,7 +101,7 @@ export class LoginService {
 
   public getLogin(): Promise<Login> {
     if (this.login === undefined) {
-      return this.http.get(this.serverUrl + '/users/' + this.getUsername(), { headers: this.getHeaders() })
+      return this.http.get(this.serverUrl + '/users/' + this.getUsername(), { headers: this.headerService.getHeaders() })
       .toPromise()
       .then(response => {
         const responseJson = response.json();
@@ -147,11 +150,4 @@ export class LoginService {
   private setToken(value: string): void {
     return localStorage.setItem(this.TOKEN, value);
   }
-
-  private getHeaders() {
-    return new Headers({ 'Content-Type': 'application/json', 'AuthToken' : this.getToken() });
-  }
-
-
-
 }

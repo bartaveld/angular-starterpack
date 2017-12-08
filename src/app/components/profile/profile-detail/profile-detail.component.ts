@@ -1,6 +1,7 @@
 import { Login } from './../../../models/login.model';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../../services/login.service';
+import { Mock } from '../../../models/mock';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +10,7 @@ import { LoginService } from '../../../services/login.service';
 })
 export class ProfileDetailComponent implements OnInit {
 
-  public login = { username: '', firstName: '', lastName: '', imagePath: '' };
+  public login = Mock.login();
   public isLoading = true;
 
   constructor(private loginService: LoginService) { }

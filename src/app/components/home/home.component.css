@@ -1,10 +1,17 @@
-.sidenav {
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: red;
+.posts {
+  overflow-x: hidden;
+  background-color: #F5F5F5;
 }
 
-.sidenav a {
-  color: red;
+.card {
+  margin: 1rem;
+}
+
+.clickablecard{
+  cursor: pointer;
+}
+
+.clickablecard:hover{
+  cursor: pointer;
+  box-shadow: 0 0 0.5rem #039BE5;
 }

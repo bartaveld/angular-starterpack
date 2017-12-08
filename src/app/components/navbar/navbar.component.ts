@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Login } from '../../models/login.model';
+import { Mock } from '../../models/mock';
 
 @Component({
   selector: 'app-navbar',
@@ -10,11 +11,12 @@ import { Login } from '../../models/login.model';
 })
 export class NavbarComponent implements OnInit {
 
-  public login = { username: '', firstName: '', lastName: '', imagePath: '' };
+  public login = Mock.login();
 
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
+
     this.loginService.getLogin()
       .then((login) => {
         this.login = login;

@@ -19,6 +19,9 @@ import { ProfileDeleteComponent } from './components/profile/profile-delete/prof
 import { MainComponent } from './components/main/main.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileDetailPostsComponent } from './components/profile/profile-detail/profile-detail-posts/profile-detail-posts.component';
+import { HeaderService } from './services/header.service';
+import { PostsService } from './services/posts.service';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { ProfileDetailPostsComponent } from './components/profile/profile-detail
     MainComponent,
     RegisterComponent,
     ProfileDetailPostsComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ import { ProfileDetailPostsComponent } from './components/profile/profile-detail
     AngularFontAwesomeModule
   ],
   providers: [
-    LoginService
+    LoginService,
+    HeaderService,
+    PostsService
   ],
   bootstrap: [AppComponent]
 })
