@@ -1,13 +1,9 @@
-import { Comment } from "./comment.model";
-
-export class Post {
+export class Comment {
 
   private _id: string;
-  private _title: string;
   private _username: string;
   private _message: string;
   private _postedOn: Date;
-  private _comments: Comment[];
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
@@ -29,14 +25,6 @@ export class Post {
     this._username = n;
   }
 
-  public get title() {
-    return this._title;
-  }
-
-  public set title(n: string) {
-    this._title = n;
-  }
-
   public get message() {
     return this._message;
   }
@@ -51,13 +39,5 @@ export class Post {
 
   public set postedOn(n: Date) {
     this._postedOn = n;
-  }
-
-  public get comments() {
-    return this._comments;
-  }
-
-  public set comments(n: Comment[]) {
-    this._comments = n;
   }
 }

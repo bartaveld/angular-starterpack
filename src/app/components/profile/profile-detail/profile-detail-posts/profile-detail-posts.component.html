@@ -1,13 +1,20 @@
 <div class="posts">
   <div class="row">
     <div class="col-sm-12">
-        <div class="card clickablecard" *ngFor="let post of posts">
+        <div class="card topCard clickablecard" *ngFor="let post of posts">
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-12">
                   <h4 class="card-title">{{post.title}}</h4>
-                  <h6>{{post.postedOn}}</h6><br>
+                  <h6>{{post.postedOn.toLocaleString()}}</h6><br>
                   <p class="card-text">{{post.message}}.</p>
+                  <h6 *ngIf="post.comments.length !== 0">Comments {{post.comments.length}}</h6>
+                  <div *ngFor="let comment of post.comments.slice(0, 1)" class="card">
+                      <div class="card-body">
+                        <h6><b>@{{comment.username}}</b> - {{comment.postedOn}}</h6><br>
+                        <p class="card-text">{{comment.message}}</p>
+                      </div>
+                    </div>
                 </div>
               </div>
             </div>

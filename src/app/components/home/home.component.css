@@ -2,15 +2,11 @@
   overflow-x: hidden;
 }
 
-.card {
+.topCard {
   margin: 1rem;
 }
 
-h6 > b {
-  color: #039BE5;
-}
-
-b {
+.fa-send {
   color: white;
 }
 
