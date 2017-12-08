@@ -3,27 +3,31 @@
     <div class="col-sm-12">
         <div class="card" >
           <div class="card-body">
-            <h2 class="card-title">What are you up to?</h2>
-            <form>
-                <div class="form-group">
-                  <label for="title"> Title </label>
-                  <input [(ngModel)]="title" name="title" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="message" > Message </label>
-                  <textarea [(ngModel)]="message" name="message" class="form-control" rows="5"></textarea>
-                </div>
-                <button [disabled]="message === '' || title === '' || posting" class="btn btn-primary" (click)="post()">
-                  Post
-                </button>
-              </form>
+            <h3 class="card-title">What are you up to?</h3>
+            <div class="row">
+              <div class="col-sm-11">
+                <form>
+                    <div class="form-group">
+                      <input [(ngModel)]="title" placeholder="Title" name="title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <textarea [(ngModel)]="message" name="message" placeholder="I'm doing..." class="form-control" rows="4"></textarea>
+                    </div>
+                </form>
+              </div>
+              <div class="col-sm-1">
+                  <div class="send" [ngClass]="{'disabled' : !canPost()}"  (click)="canPost() ? post() : null">
+                      <b class="fa fa-send"></b>
+                    </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="card clickablecard" *ngFor="let post of posts">
           <div class="card-body">
             <h4 class="card-title">{{post.title}}</h4>
-            <h6>{{post.username}} - {{post.postedOn}}</h6><br>
+            <h6><b>@{{post.username}}</b> - {{post.postedOn}}</h6><br>
             <p class="card-text">{{post.message}}</p>
           </div>
         </div>

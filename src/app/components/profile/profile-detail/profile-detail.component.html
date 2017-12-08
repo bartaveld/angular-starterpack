@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-sm-1">
         <div class="round" [ngStyle]="{'background-image': 'url(' + login.imagePath + ')'}">
-          <b class="letter" *ngIf="login.imagePath === ''">{{login.firstName.charAt(0)}}</b>
+          <b class="letters" *ngIf="login.imagePath === ''">{{login.firstName.charAt(0) + login.lastName.charAt(0)}}</b>
         </div>
     </div>
     <div class="col-sm-7">
@@ -15,24 +15,21 @@
     </div>
     <div class="col-sm-3">
       <div class="profiletext">
-        <h3>Posts 100</h3>
+        <!-- <h3>Posts 100</h3>
         <h3>Followers 100</h3>
-        <h3>Following 100</h3>
+        <h3>Following 100</h3> -->
       </div>
     </div>
     <div class="col-sm-1">
       <div class="profileoptions">
-        <button class="btn btn-info" routerLink="edit">
-            <b class="fa fa-edit"></b>
-          </button>
-          <button class="btn btn-danger" routerLink="delete">
-            <b class="fa fa-trash-o"></b>
-          </button>
+          <div class="menu">
+              <button class="dropdown-item" style="cursor: pointer;" type="button" routerLink="edit"><b class="fa fa-edit"></b> Edit</button>
+              <button class="dropdown-item" style="cursor: pointer;" type="button" routerLink="delete"><b class="fa fa-trash"></b> Delete</button>
+          </div>
       </div>
     </div>
   </div>
 </div>
-
-<app-profile-detail-posts></app-profile-detail-posts>
+<app-profile-detail-posts *ngIf="!isLoading"></app-profile-detail-posts>
 
 

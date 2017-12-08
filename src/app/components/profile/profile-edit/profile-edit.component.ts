@@ -1,6 +1,6 @@
+import { User } from './../../../models/user.model';
 import { LoginService } from '../../../services/login.service';
 import { Component, OnInit } from '@angular/core';
-import { Login } from '../../../models/login.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ export class ProfileEditComponent implements OnInit {
   public lastName: string;
   public username: string;
   public imagePath: string;
-  public login: Login;
+  public login: User;
   public isUpdating = false;
 
   constructor(

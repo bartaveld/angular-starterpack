@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchbarComponent implements OnInit {
 
+  public param = '';
+
   constructor() { }
 
   ngOnInit() {

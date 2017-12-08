@@ -42,6 +42,23 @@ export class PostsService {
       });
   }
 
+  public doGetPostsFromUser(username: string): Promise<Post[]> {
+    return this.http.get(this.serverUrl + '/posts?username=' + username, { headers: this.headerService.getHeaders()})
+    .toPromise()
+    .then(response => {
+      const responseJson = response.json();
+        const postsList = [];
+        responseJson.forEach((post, index) => {
+          const newPost = new Post({id: post._id, title: post.title, message: post.message, username: post.user, postedOn: post.createdAt});
+          postsList.push(newPost);
+        });
+        return postsList;
+    })
+    .catch(error => {
+      return this.handleError(error);
+    });
+  }
+
   public doMakePost(title: string, message: string): Promise<Post> {
     return this.http.post(this.serverUrl + '/posts', {title: title, message: message}, { headers: this.headerService.getHeaders()})
       .toPromise()

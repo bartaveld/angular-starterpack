@@ -1,11 +1,18 @@
 .posts {
-  background-color: #616161;
   overflow-x: hidden;
 }
 
 
 .card {
-  color: white;
   margin: 1rem;
-  background-color: #424242;
+}
+
+.button {
+  text-align: right;
+}
+
+.menu {
+  bottom: 0;
+  right: 0;
+  position: absolute;
 }

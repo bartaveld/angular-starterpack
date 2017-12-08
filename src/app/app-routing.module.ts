@@ -1,3 +1,4 @@
+import { SearchComponent } from './components/search/search.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileDetailComponent } from './components/profile/profile-detail/profile-detail.component';
@@ -12,6 +13,7 @@ import { MainComponent } from './components/main/main.component';
 const appRoutes: Routes = [
   { path: '', component: MainComponent, children: [
     { path: '', component: HomeComponent },
+    { path: 'search', component: SearchComponent },
     { path: 'profile', component: ProfileComponent, children : [
       {path: '', component: ProfileDetailComponent},
       {path: 'edit', component: ProfileEditComponent},

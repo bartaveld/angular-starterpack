@@ -1,4 +1,3 @@
-import { Login } from './../../../models/login.model';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../../services/login.service';
 import { Mock } from '../../../models/mock';
@@ -10,6 +9,7 @@ import { Mock } from '../../../models/mock';
 })
 export class ProfileDetailComponent implements OnInit {
 
+  public dropDownShown = true;
   public login = Mock.login();
   public isLoading = true;
 

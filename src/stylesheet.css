@@ -1,0 +1,13 @@
+body {
+  background-color: #EEEEEE;
+}
+
+.clickablecard{
+  transition: box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.clickablecard:hover{
+  cursor: pointer;
+  box-shadow: 0 0  0 0.15rem #039BE5;
+}

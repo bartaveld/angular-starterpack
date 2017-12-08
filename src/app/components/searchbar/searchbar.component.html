@@ -1,8 +1,8 @@
 <div class="searchbar">
   <div class="form-group" >
-    <input name="search" placeholder="Search..." class="form-control searchinput" type="text">
+    <input [(ngModel)]="param" name="param" placeholder="Search username..." class="form-control searchinput" type="text">
   </div>
-  <div class="round searchbtn">
+  <div class="round searchbtn" routerLink="/search" [queryParams]="{param: param}">
     <span>
       <b class="fa fa-search"></b>
     </span>

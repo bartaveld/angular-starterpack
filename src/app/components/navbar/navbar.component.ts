@@ -1,7 +1,6 @@
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { Component, OnInit } from '@angular/core';
-import { Login } from '../../models/login.model';
 import { Mock } from '../../models/mock';
 
 @Component({

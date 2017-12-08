@@ -39,7 +39,7 @@
 .searchbtn:hover {
   border-radius: 30%;
   background: #FF9800;
-  box-shadow: 0 0 1rem #FF9800;
+  /* box-shadow: 0 0 1rem #FF9800; */
 }
 
 b {

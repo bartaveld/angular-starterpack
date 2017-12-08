@@ -1,3 +1,21 @@
-<p>
-  search works!
-</p>
+<div *ngIf="!searching">
+    <div class="card clickablecard" *ngFor="let user of results">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-1">
+              <div class="round" [ngStyle]="{'background-image': 'url(' + user.imagePath + ')'}">
+                <b class="letters" *ngIf="user.imagePath === ''">{{user.firstName.charAt(0) + user.lastName.charAt(0)}}</b>
+              </div>
+            </div>
+            <div class="col-sm-11">
+              <h4 class="card-title">{{user.firstName}} {{user.lastName}}</h4>
+              <h6>@{{user.username}}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="results.length === 0" class="container">
+        <h3>No results...</h3>
+      </div>
+</div>

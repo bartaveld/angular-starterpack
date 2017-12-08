@@ -1,3 +1,4 @@
+import { UsersService } from './services/users.service';
 import { LoginService } from './services/login.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -50,7 +51,8 @@ import { SearchComponent } from './components/search/search.component';
   providers: [
     LoginService,
     HeaderService,
-    PostsService
+    PostsService,
+    UsersService
   ],
   bootstrap: [AppComponent]
 })

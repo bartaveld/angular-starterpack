@@ -1,7 +1,6 @@
 .profileinfo {
-  background-color: #424242;
   overflow-x: hidden;
-  color: white;
+  background: #F5F5F5;
 }
 
 .profiletext {
@@ -13,7 +12,8 @@
 }
 
 .profileoptions {
-  bottom: 0;
+  top: 0;
+  right: 1rem;
   position: absolute;
   padding-bottom: 1rem;
 }
@@ -39,7 +39,7 @@
   background-size: cover;
 }
 
-.letter {
+.letters {
   font-size: 7rem;
 }
 

@@ -1,3 +1,4 @@
+import { User } from '../models/user.model';
 import { HeaderService } from './header.service';
 import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
@@ -5,7 +6,6 @@ import { environment } from '../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
-import { Login } from '../models/login.model';
 import { PostsService } from './posts.service';
 
 
@@ -15,14 +15,14 @@ export class LoginService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private serverUrl = environment.serverUrl;
 
-  private login: Login;
+  private login: User;
   private LOGGEDIN = 'loggedIn';
   private TOKEN = 'token';
   private USERNAME = 'username';
 
   constructor(private http: Http, private headerService: HeaderService, private postsService: PostsService) { }
 
-  public doLogin(username: string, password: string): Promise<Login> {
+  public doLogin(username: string, password: string): Promise<User> {
     return this.http.post(this.serverUrl + '/login', {username: username, password: password}, { headers: this.headerService.getHeaders()})
       .toPromise()
       .then(response => {
@@ -35,7 +35,7 @@ export class LoginService {
         delete responseJson.token;
         delete responseJson.login;
 
-        const login = responseJson as Login;
+        const login = responseJson as User;
         this.setLogin(login);
         return login;
       })
@@ -44,7 +44,7 @@ export class LoginService {
       });
   }
 
-  public updateLogin(newLogin: Login): Promise<Login> {
+  public updateLogin(newLogin: User): Promise<User> {
     return this.http.put(this.serverUrl + '/users', {firstName: newLogin.firstName, lastName: newLogin.lastName, imagePath: newLogin.imagePath}
     , { headers: this.headerService.getHeaders()})
       .toPromise()
@@ -60,7 +60,7 @@ export class LoginService {
       });
   }
 
-  public deleteLogin(): Promise<Login> {
+  public deleteLogin(): Promise<User> {
     return this.http.delete(this.serverUrl + '/users' , { headers: this.headerService.getHeaders()})
       .toPromise()
       .then(response => {
@@ -85,8 +85,7 @@ export class LoginService {
   }
 
   public doLogout() {
-    this.setLoggedIn(false);
-    this.setToken('');
+    localStorage.clear();
     this.postsService.clearPosts();
   }
 
@@ -99,7 +98,7 @@ export class LoginService {
     return localStorage.getItem(this.LOGGEDIN) === 'true';
   }
 
-  public getLogin(): Promise<Login> {
+  public getLogin(): Promise<User> {
     if (this.login === undefined) {
       return this.http.get(this.serverUrl + '/users/' + this.getUsername(), { headers: this.headerService.getHeaders() })
       .toPromise()
@@ -109,7 +108,7 @@ export class LoginService {
         delete responseJson.token;
         delete responseJson.login;
 
-        const login = responseJson as Login;
+        const login = responseJson as User;
         this.setLogin(login);
         return login;
       })
@@ -117,13 +116,13 @@ export class LoginService {
         return this.handleError(error);
       });
     } else {
-      return new Promise<Login>((resolve, reject) => {
+      return new Promise<User>((resolve, reject) => {
         resolve(this.login);
       });
     }
   }
 
-  private setLogin(login: Login) {
+  private setLogin(login: User) {
     this.login = login;
   }
 

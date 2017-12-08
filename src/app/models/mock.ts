@@ -1,7 +1,7 @@
-import { Login } from './login.model';
+import { User } from './user.model';
 
 export  class Mock {
-  public static login() {
-    return { username: '', firstName: '', lastName: '', imagePath: '' };
+  public static login(): User {
+    return { username: '', firstName: '', lastName: '', imagePath: '' } as User;
   }
 }

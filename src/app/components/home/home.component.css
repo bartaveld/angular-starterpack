@@ -1,17 +1,41 @@
 .posts {
   overflow-x: hidden;
-  background-color: #F5F5F5;
 }
 
 .card {
   margin: 1rem;
 }
 
-.clickablecard{
-  cursor: pointer;
+h6 > b {
+  color: #039BE5;
 }
 
-.clickablecard:hover{
+b {
+  color: white;
+}
+
+.send{
+  bottom: 0;
+  position: absolute;
   cursor: pointer;
-  box-shadow: 0 0 0.5rem #039BE5;
+  height: 3.5rem;
+  width: 3.5rem;
+  line-height: 3.5rem;
+  text-align: center;
+  border-radius: 90%;
+  background: #29B6F6;
+  transition: border-radius 0.2s, background 0.2s;
+  margin-bottom: 1rem;
+  background-size: cover;
+}
+
+.disabled {
+  cursor: auto;
+  background: #81D4FA;
+}
+
+.send:not(.disabled):hover {
+  border-radius: 30%;
+  background: #039BE5;
+  background-size: cover;
 }

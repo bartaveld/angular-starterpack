@@ -1,0 +1,22 @@
+.card {
+  margin: 1rem;
+}
+
+.round{
+  cursor: pointer;
+  height: 5rem;
+  width: 5rem;
+  line-height: 4.75rem;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 50%;
+  background: #616161;
+  transition: border-radius 0.2s, background 0.2s;
+  margin-bottom: 1rem;
+  background-size: cover;
+}
+
+.letters {
+  color: white;
+  font-size: 3rem;
+}

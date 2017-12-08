@@ -37,7 +37,7 @@ b {
   text-align: center;
   border-radius: 50%;
   background: #616161;
-  transition: border-radius 0.2s, background 0.2s;
+  transition: border-radius 0.2s, background 0.2s, box-shadow 0.2s;
   margin-bottom: 1rem;
   background-size: cover;
 }
@@ -45,8 +45,8 @@ b {
 .round:hover {
   border-radius: 30%;
   background: #039BE5;
-  box-shadow: 0 0 1rem #039BE5;
   background-size: cover;
+  box-shadow: 0 0 0 0.1rem #E0E0E0;
 }
 
 .logout {
@@ -56,13 +56,14 @@ b {
 
 .logout:hover {
   background: #d32f2f;
-  box-shadow: 0 0 1rem #d32f2f;
+  box-shadow: 0 0 0 0 #EEEEEE;
+
 }
 
 div.active{
   border-radius: 30%;
   background: #29B6F6;
-  box-shadow: 0 0 1rem #29B6F6;
+  box-shadow: 0 0 0 0.1rem #FAFAFA;
   background-size: cover;
 }
 

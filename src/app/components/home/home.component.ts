@@ -23,12 +23,18 @@ export class HomeComponent implements OnInit {
   }
 
   public post() {
+    console.log('TEST THIS');
+
     this.posting = true;
     this.postsService.doMakePost(this.title, this.message)
       .then((post) => {
         this.posts.unshift(post);
         this.posting = false;
       });
+  }
+
+  public canPost() {
+    return !(this.message === '' || this.title === '' || this.posting);
   }
 
 }
