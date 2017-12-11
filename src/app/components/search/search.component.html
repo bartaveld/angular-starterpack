@@ -1,5 +1,5 @@
 <div *ngIf="!searching">
-    <div class="card clickablecard" *ngFor="let user of results">
+    <div class="card clickablecard" routerLink="/profile/user/{{user.username}}" *ngFor="let user of results">
         <div class="card-body">
           <div class="row">
             <div class="col-sm-1">

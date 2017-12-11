@@ -1,0 +1,94 @@
+<div class="main">
+  <button (click)="goBack()" class="btn btn-primary">
+    < Back
+  </button>
+  <button [disabled]="deleteMode" *ngIf="yourPost" (click)="deleteMode = true" class="btn btn-danger">
+      Delete
+  </button>
+  <button [disabled]="editMode" (click)="editMode = true" *ngIf="yourPost" class="btn btn-secondary">
+      Edit
+  </button>
+  <div *ngIf="deleteMode" class="card delete">
+    <div class="card-body">
+      <div class="card-text">
+        Are you sure you want to delete this post? <br>
+        <button (click)="goDelete()" *ngIf="yourPost" class="btn btn-warning">
+            Yes
+        </button>
+        <button (click)="deleteMode = false" *ngIf="yourPost" class="btn btn-warning">
+            No
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="post !== undefined" class="card topCard">
+    <div class="card-body">
+      <div *ngIf="!editMode" class="post">
+        <h4 #title class="card-title">{{post.title}}</h4>
+        <h6><b class="link" routerLink="/profile/user/{{post.username}}">@{{post.username}}</b> - {{post.postedOn.toLocaleString()}}</h6><br>
+        <p class="card-text">{{post.message}}</p>
+        <h6 *ngIf="post.comments.length !== 0">Comments {{post.comments.length}}</h6>
+      </div>
+      <div *ngIf="editMode" class="edit">
+          <form>
+              <div class="form-group">
+                <input #editTitle value="{{post.title}}" placeholder="Title" name="title" class="form-control">
+              </div>
+              <div class="form-group">
+                <textarea #editMessage value="{{post.message}}" name="message" placeholder="I'm doing..." class="form-control" rows="4"></textarea>
+              </div>
+              <button class="btn btn-primary" (click)="editPost(editTitle.value, editMessage.value)">Save</button>
+              <button class="btn btn-danger" (click)="editMode = !editMode">Cancel</button>
+          </form>
+          <p></p>
+        </div>
+      <div *ngFor="let comment of post.comments" class="card comment">
+        <div class="card-body">
+          <h6><b class="link" routerLink="/profile/user/{{comment.username}}">@{{comment.username}}</b> - {{comment.postedOn.toLocaleString()}}</h6><br>
+          <p #messageComment class="card-text">{{comment.message}}</p>
+          <form #editCommentForm class="invisible">
+              <div class="form-group" >
+                <textarea #editCommentInput name="comment" class="form-control" rows="2" value="{{comment.message}}"></textarea> <br>
+                <button class="btn btn-primary" (click)="editComment(comment.id, editCommentInput.value); editCommentForm.classList.toggle('invisible'); messageComment.classList.toggle('invisible');">Save</button>
+                <button class="btn btn-danger" (click)="editCommentForm.classList.toggle('invisible'); messageComment.classList.toggle('invisible');">Cancel</button>
+              </div>
+            </form>
+          <div class="commentOptions">
+            <div class="text-muted">
+              <small style="cursor: pointer;" *ngIf="yourPost || (comment.username === loggedInUsername)"
+              (click)="delete.classList.toggle('invisible');">
+                  Delete
+              </small>
+              <small (click)="editCommentForm.classList.toggle('invisible'); messageComment.classList.toggle('invisible');"  style="cursor: pointer;" *ngIf="comment.username === loggedInUsername">
+                  &nbsp; Edit
+              </small>
+            </div>
+            <div #delete class="card delete invisible">
+                <div class="card-body">
+                  <div class="card-text">
+                    Are you sure you want to delete this comment? <br>
+                    <button (click)="deleteComment(comment.id); delete.classList.toggle('invisible')" class="btn btn-warning">
+                        Yes
+                    </button>
+                    <button (click)="delete.classList.toggle('invisible');" class="btn btn-warning">
+                        No
+                    </button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+    </div>
+    </div>
+    <div class="card-footer">
+        <form>
+            <div class="form-group" >
+              <label for="comment"> Leave a comment </label>
+              <textarea [(ngModel)]="commentMessage" name="comment" class="form-control" rows="2"></textarea> <br>
+              <button (click)="comment()" [disabled]="commentMessage === ''" class="btn btn-primary">Comment</button>
+            </div>
+          </form>
+      </div>
+  </div>
+
+</div>

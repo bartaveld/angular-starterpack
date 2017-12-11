@@ -19,13 +19,14 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
 
+    this.usersService.following.subscribe((next) => {
+      this.following = next;
+    });
+
     this.loginService.getLogin()
       .then((login) => {
         this.login = login;
-        this.usersService.doGetFollowing()
-          .then((list: User[]) => {
-            this.following = list;
-          });
+        this.usersService.doGetFollowing();
       });
   }
 

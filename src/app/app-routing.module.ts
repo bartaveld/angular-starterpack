@@ -9,6 +9,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileEditComponent } from './components/profile/profile-edit/profile-edit.component';
 import { ProfileDeleteComponent } from './components/profile/profile-delete/profile-delete.component';
 import { MainComponent } from './components/main/main.component';
+import { PostComponent } from './components/post/post.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainComponent, children: [
@@ -19,6 +20,8 @@ const appRoutes: Routes = [
       {path: 'edit', component: ProfileEditComponent},
       {path: 'delete', component: ProfileDeleteComponent}
     ] },
+    { path: 'profile/user/:username', component: ProfileDetailComponent},
+    { path: 'post/:id', component: PostComponent}
   ]},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},

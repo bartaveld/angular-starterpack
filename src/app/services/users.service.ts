@@ -3,13 +3,18 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 import { HeaderService } from './header.service';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
+import { LoginService } from './login.service';
+import { Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class UsersService {
 
   private serverUrl = environment.serverUrl;
 
-  constructor(private http: Http, private headerService: HeaderService) { }
+  public following = new Subject<User[]>();
+  private savedFollowing: User[];
+
+  constructor(private http: Http, private headerService: HeaderService, private loginService: LoginService) { }
 
   public doSearch(searchParam: string): Promise<User[]> {
     return this.http.get(this.serverUrl + '/users?username=' + searchParam, { headers: this.headerService.getHeaders()})
@@ -19,7 +24,12 @@ export class UsersService {
 
         const userList: User[] = [];
         responseJson.forEach(element => {
-          userList.push(element as User);
+          this.loginService.getLogin()
+            .then((user) => {
+              if (element.username !== user.username) {
+                userList.push(element as User);
+              }
+            });
         });
         return userList;
       })
@@ -28,8 +38,21 @@ export class UsersService {
       });
   }
 
-  public doGetFollowing(): Promise<User[]> {
-    return this.http.get(this.serverUrl + '/followers', {headers: this.headerService.getHeaders()})
+  public doGetUserByUsername(user: string): Promise<User> {
+    return this.http.get(this.serverUrl + '/users?username=' + user, { headers: this.headerService.getHeaders()})
+    .toPromise()
+    .then(response => {
+      const responseJson = response.json();
+
+      return responseJson[0] as User;
+    })
+    .catch(error => {
+      return this.handleError(error);
+    });
+  }
+
+  public doGetFollowing() {
+    this.http.get(this.serverUrl + '/followers', {headers: this.headerService.getHeaders()})
       .toPromise()
       .then(response => {
         const responseJson = response.json();
@@ -38,10 +61,48 @@ export class UsersService {
         responseJson.forEach(element => {
           userList.push(element as User);
         });
-        return userList;
+        this.savedFollowing = userList;
+        this.following.next(userList);
       })
       .catch(error => {
-        return this.handleError(error);
+        this.handleError(error);
+      });
+  }
+
+  public checkIfFollowing(username: string): boolean {
+    if (this.savedFollowing === undefined) {
+      return undefined;
+    } else {
+      let found = false;
+      this.savedFollowing.forEach(user => {
+        if (user.username === username) {
+          found = true;
+          return found;
+        }
+      });
+      return found;
+    }
+  }
+
+  public doFollow(user: User) {
+    return this.http.post(this.serverUrl + '/followers', {user: user.username },  {headers: this.headerService.getHeaders()})
+      .toPromise()
+      .then(response => {
+        this.doGetFollowing();
+      })
+      .catch(error => {
+        this.handleError(error);
+      });
+  }
+
+  public doUnfollow(user: User) {
+    return this.http.delete(this.serverUrl + '/followers', {headers: this.headerService.getHeaders(), body: {user: user.username }})
+      .toPromise()
+      .then(response => {
+        this.doGetFollowing();
+      })
+      .catch(error => {
+        this.handleError(error);
       });
   }
 

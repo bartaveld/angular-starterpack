@@ -40,6 +40,8 @@
 }
 
 .letters {
-  font-size: 7rem;
+  font-size: 6rem;
+  color: white;
+  user-select: none;
 }
 

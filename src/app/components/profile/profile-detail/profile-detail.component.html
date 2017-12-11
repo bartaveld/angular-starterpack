@@ -1,16 +1,21 @@
 <h1 *ngIf="isLoading">Loading...</h1>
 
-<div class="profileinfo">
+<div *ngIf="doesNotExist" class="container">
+    <h3>The user you are looking for does not exist</h3>
+</div>
+
+
+<div *ngIf="!isLoading && !doesNotExist"  class="profileinfo">
   <div class="row">
     <div class="col-sm-1">
-        <div class="round" [ngStyle]="{'background-image': 'url(' + login.imagePath + ')'}">
-          <b class="letters" *ngIf="login.imagePath === ''">{{login.firstName.charAt(0) + login.lastName.charAt(0)}}</b>
+        <div class="round" [ngStyle]="{'background-image': 'url(' + user.imagePath + ')'}">
+          <b class="letters" *ngIf="user.imagePath === ''">{{user.firstName.charAt(0) + user.lastName.charAt(0)}}</b>
         </div>
     </div>
     <div class="col-sm-7">
       <div class="profiletext">
-        <h1>{{login.firstName}}  {{login.lastName}}</h1>
-        <h2>@{{login.username}}</h2>
+        <h1>{{user.firstName}}  {{user.lastName}}</h1>
+        <h2>@{{user.username}}</h2>
       </div>
     </div>
     <div class="col-sm-3">
@@ -21,15 +26,29 @@
       </div>
     </div>
     <div class="col-sm-1">
-      <div class="profileoptions">
+      <div class="profileoptions" *ngIf="isOwnProfile">
           <div class="menu">
               <button class="dropdown-item" style="cursor: pointer;" type="button" routerLink="edit"><b class="fa fa-edit"></b> Edit</button>
               <button class="dropdown-item" style="cursor: pointer;" type="button" routerLink="delete"><b class="fa fa-trash"></b> Delete</button>
           </div>
       </div>
+      <div class="profileoptions" *ngIf="!isOwnProfile && youAreFollowing !== undefined">
+        <div class="menu">
+            <button (click)="follow()" *ngIf="!youAreFollowing" class="dropdown-item" style="cursor: pointer;" type="button"><b class="fa fa-bell-o"></b> Follow </button>
+            <button (click)="unfollow()" *ngIf="youAreFollowing"
+            (mouseenter)="followhover = true"
+            (mouseleave)="followhover = false"
+            class="dropdown-item" style="cursor: pointer;" type="button">
+            <b [ngClass]="{'fa-bell': !followhover, 'fa-bell-slash': followhover}" class="fa">
+
+            </b> {{!followhover ? 'Following' : 'Unfollow'}}
+          </button>
+            <!-- <button class="dropdown-item" style="cursor: pointer;" type="button"><b class="fa fa-bell-slash"></b> Unfollow </button> -->
+        </div>
+    </div>
     </div>
   </div>
 </div>
-<app-profile-detail-posts *ngIf="!isLoading"></app-profile-detail-posts>
+<app-profile-detail-posts *ngIf="!isLoading && !doesNotExist"></app-profile-detail-posts>
 
 

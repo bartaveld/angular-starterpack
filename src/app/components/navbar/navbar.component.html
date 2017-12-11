@@ -5,13 +5,16 @@
       <b class="fa fa-home"></b>
     </span>
   </div>
-  <div class="round" [ngStyle]="{'background-image': 'url(' + login.imagePath + ')'}" routerLink="/profile" routerLinkActive="active">
+  <div class="round" [ngStyle]="{'background-image': 'url(' + login.imagePath + ')'}" routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+    true}">
     <span>
       <b *ngIf="login.imagePath === ''"  class="fa fa-user"></b>
     </span>
   </div>
   <div class="following">
-    <div *ngFor="let follow of following" title="@{{follow.username}}" class="round hasText" [ngStyle]="{'background-image': 'url(' + follow.imagePath + ')'}">
+    <div *ngFor="let follow of following" title="@{{follow.username}}" class="round hasText" [ngStyle]="{'background-image': 'url(' + follow.imagePath + ')'}"
+    routerLink="/profile/user/{{follow.username}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+      true}">
       <span>
         <b *ngIf="follow.imagePath === ''"> {{follow.firstName.charAt(0) + follow.lastName.charAt(0)}}</b>
       </span>

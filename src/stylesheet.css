@@ -8,10 +8,19 @@ body {
 }
 
 .clickablecard:hover{
-  cursor: pointer;
   box-shadow: 0 0  0 0.15rem #039BE5;
 }
 
 h6 > b {
+  color: #29B6F6;
+}
+
+.link {
+  transition: font-size 0.1s, color 0.2s;
+  cursor: pointer;
+}
+
+.link:hover {
+  font-size: 1.05rem;
   color: #039BE5;
 }

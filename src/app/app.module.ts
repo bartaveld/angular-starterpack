@@ -23,6 +23,7 @@ import { ProfileDetailPostsComponent } from './components/profile/profile-detail
 import { HeaderService } from './services/header.service';
 import { PostsService } from './services/posts.service';
 import { SearchComponent } from './components/search/search.component';
+import { PostComponent } from './components/post/post.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SearchComponent } from './components/search/search.component';
     RegisterComponent,
     ProfileDetailPostsComponent,
     SearchComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,

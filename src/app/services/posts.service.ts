@@ -85,6 +85,101 @@ export class PostsService {
       });
   }
 
+  public doGetPostById(id: string): Promise<Post> {
+    return this.http.get(this.serverUrl + '/posts/' + id, { headers: this.headerService.getHeaders()})
+      .toPromise()
+      .then(response => {
+        const responseJson = response.json();
+        const post = new Post({id: responseJson._id, title: responseJson.title,
+          message: responseJson.message, username: responseJson.user, postedOn: new Date(responseJson.createdAt)});
+        const comments = [];
+        responseJson.comments.forEach(comment => {
+          comments.unshift(new Comment({id: comment._id, username: comment.user, message: comment.message, postedOn: new Date(comment.createdAt)}));
+        });
+        post.comments = comments;
+        return post;
+      })
+      .catch(error => {
+        return this.handleError(error);
+      });
+  }
+
+  public doPostAComment(postId: string, message: string): Promise<Comment[]> {
+    return this.http.post(this.serverUrl + '/posts/' + postId + '/comments', { message: message }, { headers: this.headerService.getHeaders()})
+    .toPromise()
+    .then(response => {
+      const comments: Comment[] = [];
+      response.json().comments.forEach(comment => {
+        comments.unshift(new Comment({id: comment._id, username: comment.user, message: comment.message, postedOn: new Date(comment.createdAt)}));
+      });
+      return comments;
+    })
+    .catch(error => {
+      return this.handleError(error);
+    });
+  }
+
+  public doDeleteComment(postId: string, commentId: string): Promise<Comment[]> {
+    return this.http.delete(this.serverUrl + '/posts/' + postId + '/comments/' + commentId, { headers: this.headerService.getHeaders()})
+    .toPromise()
+    .then(response => {
+      const comments: Comment[] = [];
+      response.json().comments.forEach(comment => {
+        comments.unshift(new Comment({id: comment._id, username: comment.user, message: comment.message, postedOn: new Date(comment.createdAt)}));
+      });
+      return comments;
+    })
+    .catch(error => {
+      return this.handleError(error);
+    });
+  }
+
+  public doDeletePost(postId: string) {
+    return this.http.delete(this.serverUrl + '/posts/' + postId, { headers: this.headerService.getHeaders()})
+    .toPromise()
+    .then(response => {
+    })
+    .catch(error => {
+      return this.handleError(error);
+    });
+  }
+
+  public doEditComment(postId: string, commentId: string, message: string): Promise<Comment[]> {
+    return this.http.put(this.serverUrl + '/posts/' + postId + '/comments/' + commentId, { message: message} { headers: this.headerService.getHeaders()})
+    .toPromise()
+    .then(response => {
+      const comments: Comment[] = [];
+      response.json().comments.forEach(comment => {
+        comments.unshift(new Comment({id: comment._id, username: comment.user, message: comment.message, postedOn: new Date(comment.createdAt)}));
+      });
+      return comments;
+    })
+    .catch(error => {
+      return this.handleError(error);
+    });
+  }
+
+  public doEditPost(postId: string, title: string, message: string): Promise<Post> {
+    return this.http.put(this.serverUrl + '/posts/' + postId, { title: title, message: message}, { headers: this.headerService.getHeaders()})
+    .toPromise()
+    .then(response => {
+      const responseJson = response.json();
+      const post = new Post({id: responseJson._id, title: responseJson.title,
+        message: responseJson.message, username: responseJson.user, postedOn: new Date(responseJson.createdAt)});
+      const comments: Comment[] = [];
+      response.json().comments.forEach(comment => {
+        comments.unshift(new Comment({id: comment._id, username: comment.user, message: comment.message, postedOn: new Date(comment.createdAt)}));
+      });
+      post.comments = comments;
+      return post;
+    })
+    .catch(error => {
+      return this.handleError(error);
+    });
+  }
+
+
+
   public clearPosts() {
     this.savedPost = undefined;
     this.savedPosts = [];

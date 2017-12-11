@@ -24,15 +24,22 @@
           </div>
         </div>
 
-        <div class="card topCard clickablecard" *ngFor="let post of posts">
+        <div class="card topCard" >
+            <div class="card-body">
+              <h3 class="card-title">Suggestions</h3>
+              SHOW USER SUGGESTIONS HERE
+            </div>
+          </div>
+
+        <div routerLink="/post/{{post.id}}" class="card topCard clickablecard" *ngFor="let post of posts">
           <div class="card-body">
             <h4 class="card-title">{{post.title}}</h4>
-            <h6><b>@{{post.username}}</b> - {{post.postedOn.toLocaleString()}}</h6><br>
+            <h6><b class="link" routerLink="/profile/user/{{post.username}}">@{{post.username}}</b> - {{post.postedOn.toLocaleString()}}</h6><br>
             <p class="card-text">{{post.message}}</p>
             <h6 *ngIf="post.comments.length !== 0">Comments {{post.comments.length}}</h6>
             <div *ngFor="let comment of post.comments.slice(0, 1)" class="card">
               <div class="card-body">
-                <h6><b>@{{comment.username}}</b> - {{comment.postedOn.toLocaleString()}}</h6><br>
+                <h6><b class="link" routerLink="/profile/user/{{comment.username}}">@{{comment.username}}</b> - {{comment.postedOn.toLocaleString()}}</h6><br>
                 <p class="card-text">{{comment.message}}</p>
               </div>
             </div>

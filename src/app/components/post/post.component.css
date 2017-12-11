@@ -1,0 +1,17 @@
+.main {
+  margin: 1rem;
+}
+
+.topCard{
+  margin-top: 1rem;
+}
+
+.comment{
+  margin-bottom: 1rem;
+}
+
+
+
+.invisible {
+  display: none;
+}
