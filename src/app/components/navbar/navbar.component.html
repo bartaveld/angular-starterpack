@@ -10,6 +10,13 @@
       <b *ngIf="login.imagePath === ''"  class="fa fa-user"></b>
     </span>
   </div>
+  <div class="following">
+    <div *ngFor="let follow of following" title="@{{follow.username}}" class="round hasText" [ngStyle]="{'background-image': 'url(' + follow.imagePath + ')'}">
+      <span>
+        <b *ngIf="follow.imagePath === ''"> {{follow.firstName.charAt(0) + follow.lastName.charAt(0)}}</b>
+      </span>
+    </div>
+  </div>
 </div>
 <div class="sideoptions">
     <div class="round logout" (click)="logout()">

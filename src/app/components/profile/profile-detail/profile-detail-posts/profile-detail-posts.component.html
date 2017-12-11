@@ -7,7 +7,7 @@
                 <div class="col-sm-12">
                   <h4 class="card-title">{{post.title}}</h4>
                   <h6>{{post.postedOn.toLocaleString()}}</h6><br>
-                  <p class="card-text">{{post.message}}.</p>
+                  <p class="card-text">{{post.message}}</p>
                   <h6 *ngIf="post.comments.length !== 0">Comments {{post.comments.length}}</h6>
                   <div *ngFor="let comment of post.comments.slice(0, 1)" class="card">
                       <div class="card-body">

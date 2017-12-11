@@ -77,7 +77,7 @@ export class PostsService {
       .then(response => {
         const responseJson = response.json();
         const newPost = new Post({id: responseJson._id, title: responseJson.title,
-          message: responseJson.message, username: responseJson.user, postedOn: responseJson.createdAt});
+          message: responseJson.message, username: responseJson.user, postedOn: responseJson.createdAt, comments: []});
         return newPost;
       })
       .catch(error => {

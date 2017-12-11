@@ -28,6 +28,23 @@ export class UsersService {
       });
   }
 
+  public doGetFollowing(): Promise<User[]> {
+    return this.http.get(this.serverUrl + '/followers', {headers: this.headerService.getHeaders()})
+      .toPromise()
+      .then(response => {
+        const responseJson = response.json();
+
+        const userList: User[] = [];
+        responseJson.forEach(element => {
+          userList.push(element as User);
+        });
+        return userList;
+      })
+      .catch(error => {
+        return this.handleError(error);
+      });
+  }
+
   private handleError(error: any): Promise<any> {
     console.log('handleError');
     return Promise.reject(error.message || error);
