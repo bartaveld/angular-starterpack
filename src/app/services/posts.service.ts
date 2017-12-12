@@ -145,7 +145,7 @@ export class PostsService {
   }
 
   public doEditComment(postId: string, commentId: string, message: string): Promise<Comment[]> {
-    return this.http.put(this.serverUrl + '/posts/' + postId + '/comments/' + commentId, { message: message} { headers: this.headerService.getHeaders()})
+    return this.http.put(this.serverUrl + '/posts/' + postId + '/comments/' + commentId, { message: message}, { headers: this.headerService.getHeaders()})
     .toPromise()
     .then(response => {
       const comments: Comment[] = [];

@@ -36,4 +36,49 @@
   background-size: cover;
 }
 
+.suggestions {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.round{
+  user-select: none;
+  height: 6rem;
+  width: 6rem;
+  line-height: 5.5rem;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 50%;
+  background: #616161;
+  transition: border-radius 0.2s, background 0.2s, box-shadow 0.2s;
+  margin-bottom: 1rem;
+  background-size: cover;
+}
+
+.hasText {
+  line-height: 3rem;
+}
+
+.suggestionCard {
+  padding: 1rem;
+  display: inline-block;
+  width: 15rem;
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.crossBtn {
+  transition: color 0.2s, font-size 0.2s;
+}
+.crossBtn:hover {
+  color: red;
+  font-size: 1.2rem;
+}
+
+.round > b {
+  font-size: 3.5rem;
+  color: white;
+}
+
+
 

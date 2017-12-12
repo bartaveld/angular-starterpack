@@ -69,6 +69,24 @@ export class UsersService {
       });
   }
 
+
+  public doGetSuggestions(): Promise<User[]> {
+    return this.http.get(this.serverUrl + '/users/suggestions', {headers: this.headerService.getHeaders()})
+      .toPromise()
+      .then(response => {
+        const responseJson = response.json();
+
+        const userList: User[] = [];
+        responseJson.forEach(element => {
+          userList.push(element as User);
+        });
+        return userList;
+      })
+      .catch(error => {
+        return this.handleError(error);
+      });
+  }
+
   public checkIfFollowing(username: string): boolean {
     if (this.savedFollowing === undefined) {
       return undefined;
@@ -89,6 +107,17 @@ export class UsersService {
       .toPromise()
       .then(response => {
         this.doGetFollowing();
+      })
+      .catch(error => {
+        this.handleError(error);
+      });
+  }
+
+  public doMarkNotInteresting(username: string): Promise<any> {
+    return this.http.post(this.serverUrl + '/not-interested', {user: username },  {headers: this.headerService.getHeaders()})
+      .toPromise()
+      .then(response => {
+        return response;
       })
       .catch(error => {
         this.handleError(error);

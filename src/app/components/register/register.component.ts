@@ -40,6 +40,7 @@ export class RegisterComponent implements OnInit, DoCheck {
           this.isRegistering = false;
           this.didRegister = true;
         } else {
+          this.isRegistering = false;
           this.usernameExists = true;
         }
       });

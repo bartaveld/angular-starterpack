@@ -24,10 +24,20 @@
           </div>
         </div>
 
-        <div class="card topCard" >
-            <div class="card-body">
+        <div *ngIf="suggestions.length !== 0" class="card topCard" >
+          <div class="card-body">
               <h3 class="card-title">Suggestions</h3>
-              SHOW USER SUGGESTIONS HERE
+              <div  class="suggestions">
+                <div class="card suggestionCard" *ngFor="let suggestion of suggestions">
+                  <div class="text-muted" style="text-align: right;">
+                    <b style="cursor: pointer;" (click)="notInterested(suggestion.username)" class="fa fa-times crossBtn"></b>
+                  </div>
+                  <div routerLink="/profile/user/{{suggestion.username}}" style="cursor: pointer;" class="round" [ngStyle]="{'background-image': 'url(' + suggestion.imagePath + ')'}">
+                      <b *ngIf="suggestion.imagePath === ''"> {{suggestion.firstName.charAt(0) + suggestion.lastName.charAt(0)}}</b>
+                  </div>
+                  <div class="text-muted"><b routerLink="/profile/user/{{suggestion.username}}" class="link">@{{suggestion.username}}</b></div>
+                </div>
+              </div>
             </div>
           </div>
 
