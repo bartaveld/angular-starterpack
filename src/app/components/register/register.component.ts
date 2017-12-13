@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit, DoCheck {
     this.isRegistering = true;
     this.loginService.doRegister(this.username, this.password, this.firstName, this.lastName)
       .then((result: boolean) => {
-        console.log(result);
         if (result) {
           this.isRegistering = false;
           this.didRegister = true;
