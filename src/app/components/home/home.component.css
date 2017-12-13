@@ -80,5 +80,28 @@
   color: white;
 }
 
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .send{
+    bottom: 0;
+    position: relative;
+    cursor: pointer;
+    height: 3.5rem;
+    width: 3.5rem;
+    line-height: 3.5rem;
+    text-align: center;
+    border-radius: 90%;
+    background: #29B6F6;
+    transition: border-radius 0.2s, background 0.2s;
+    margin-bottom: 1rem;
+    background-size: cover;
+  }
+
+  .disabled {
+    cursor: auto;
+    background: #81D4FA;
+  }
+}
+
 
 

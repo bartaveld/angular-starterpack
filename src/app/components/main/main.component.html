@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
 <app-searchbar></app-searchbar>
-<div class="main">
+<div [ngClass]="{'full': !navBarShown}" class="main">
   <router-outlet></router-outlet>
 </div>

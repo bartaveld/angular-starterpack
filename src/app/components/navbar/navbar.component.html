@@ -1,4 +1,4 @@
-<div class="sidenav">
+<div [ngClass]="{'hidden': !show}" class="sidenav">
   <div class="round" routerLink="" [routerLinkActiveOptions]="{exact:
     true}" routerLinkActive="active">
     <span>
@@ -21,10 +21,11 @@
     </div>
   </div>
 </div>
-<div class="sideoptions">
+<div [ngClass]="{'hidden': !show}" class="sideoptions">
     <div class="round logout" (click)="logout()">
       <span>
         <b class="fa fa-sign-out"></b>
       </span>
     </div>
 </div>
+

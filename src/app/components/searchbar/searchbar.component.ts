@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-searchbar',
@@ -8,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class SearchbarComponent implements OnInit {
 
   public param = '';
+  public showMenu = true;
 
-  constructor() { }
+  constructor(private navbarService: NavbarService) { }
 
   ngOnInit() {
+    this.navbarService.navbarIsOut.subscribe(next => {
+      this.showMenu = !next;
+    });
+  }
+
+  toggleNav() {
+    this.navbarService.toggleNavbar();
   }
 
 }

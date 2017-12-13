@@ -6,32 +6,25 @@
 
 
 <div *ngIf="!isLoading && !doesNotExist"  class="profileinfo">
-  <div class="row">
-    <div class="col-sm-1">
-        <div class="round" [ngStyle]="{'background-image': 'url(' + user.imagePath + ')'}">
-          <b class="letters" *ngIf="user.imagePath === ''">{{user.firstName.charAt(0) + user.lastName.charAt(0)}}</b>
-        </div>
-    </div>
-    <div class="col-sm-7">
+  <div class="flex-container">
+
+      <div class="round" [ngStyle]="{'background-image': 'url(' + user.imagePath + ')'}">
+        <b class="letters" *ngIf="user.imagePath === ''">{{user.firstName.charAt(0) + user.lastName.charAt(0)}}</b>
+      </div>
       <div class="profiletext">
         <h1>{{user.firstName}}  {{user.lastName}}</h1>
         <h2>@{{user.username}}</h2>
       </div>
     </div>
-    <div class="col-sm-3">
-      <div class="profiletext">
-        <!-- <h3>Posts 100</h3>
-        <h3>Followers 100</h3>
-        <h3>Following 100</h3> -->
-      </div>
-    </div>
-    <div class="col-sm-1">
+    <div class="flex-container-column">
       <div class="profileoptions" *ngIf="isOwnProfile">
           <div class="menu">
               <button class="dropdown-item" style="cursor: pointer;" type="button" routerLink="edit"><b class="fa fa-edit"></b> Edit</button>
               <button class="dropdown-item" style="cursor: pointer;" type="button" routerLink="delete"><b class="fa fa-trash"></b> Delete</button>
           </div>
       </div>
+  </div>
+    <div class="col-sm-1">
       <div class="profileoptions" *ngIf="!isOwnProfile && youAreFollowing !== undefined">
         <div class="menu">
             <button (click)="follow()" *ngIf="!youAreFollowing" class="dropdown-item" style="cursor: pointer;" type="button"><b class="fa fa-bell-o"></b> Follow </button>
@@ -48,7 +41,7 @@
     </div>
     </div>
   </div>
-</div>
+
 <app-profile-detail-posts *ngIf="!isLoading && !doesNotExist"></app-profile-detail-posts>
 
 

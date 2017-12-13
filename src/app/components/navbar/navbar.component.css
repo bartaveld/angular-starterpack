@@ -3,13 +3,14 @@
   max-height: 100vh;
   width: 5rem;
   top: 0;
-  left: 0;
+  left: 0rem;
   position: fixed;
   background-color: #212121;
   text-align: center;
   padding-top: 1rem;
   box-shadow: 0 4px 2px 2px black;
   user-select: none;
+  transition: left 0.2s;
 }
 
 .sideoptions {
@@ -21,6 +22,7 @@
   position: fixed;
   background-color: #424242;
   text-align: center;
+  transition: left 0.2s;
 }
 
 b {
@@ -97,4 +99,12 @@ span {
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .hidden {
+    left: -5rem;
+    box-shadow: none;
+  }
 }

@@ -1,4 +1,8 @@
-<div class="searchbar">
+<div [ngClass]="{'full': showMenu}" class="searchbar full">
+ <div [ngClass]="{'closeBtn': !showMenu}" class="menubtn" (click)="toggleNav()">
+   <b *ngIf="showMenu"   class="fa fa-bars"></b>
+   <b *ngIf="!showMenu"   class="fa fa-times"></b>
+ </div>
   <div class="form-group" >
     <input [(ngModel)]="param" name="param" placeholder="Search username..." class="form-control searchinput" type="text">
   </div>

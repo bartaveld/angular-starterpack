@@ -24,6 +24,7 @@ import { HeaderService } from './services/header.service';
 import { PostsService } from './services/posts.service';
 import { SearchComponent } from './components/search/search.component';
 import { PostComponent } from './components/post/post.component';
+import { NavbarService } from './services/navbar.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { PostComponent } from './components/post/post.component';
     LoginService,
     HeaderService,
     PostsService,
-    UsersService
+    UsersService,
+    NavbarService
   ],
   bootstrap: [AppComponent]
 })

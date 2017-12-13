@@ -3,33 +3,12 @@
   background: #F5F5F5;
 }
 
-.profiletext {
-  margin-left: 3rem;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.profileoptions {
-  top: 0;
-  right: 1rem;
-  position: absolute;
-  padding-bottom: 1rem;
-}
-
-@media only screen and (max-width: 768px) {
-  /* For mobile phones: */
-  .profileoptions {
-    position: relative;
-    margin-left: 1rem;
-  }
-}
-
 .round{
-  height: 10rem;
-  width: 10rem;
-  line-height: 9rem;
+  max-height: 9rem;
+  max-width: 9rem;
+  min-height: 9rem;
+  min-width: 9rem;
+  line-height: 8.5rem;
   margin: 1rem;
   text-align: center;
   border-radius: 50%;
@@ -45,3 +24,31 @@
   user-select: none;
 }
 
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.profiletext {
+  margin-top: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .round {
+    max-height: 7rem;
+    max-width: 7rem;
+    min-height: 7rem;
+    min-width: 7rem;
+    line-height: 6.5rem;
+  }
+
+  .letters {
+    font-size: 4rem;
+  }
+}

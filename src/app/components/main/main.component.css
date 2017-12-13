@@ -1,5 +1,13 @@
 .main {
   padding-top: 3rem;
   padding-left: 5rem;
+  transition: padding-left 0.2s;
 }
 
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .full {
+    padding-left: 0;
+  }
+}

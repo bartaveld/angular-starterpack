@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Mock } from '../../models/mock';
+import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,10 +15,14 @@ export class NavbarComponent implements OnInit {
 
   public login = Mock.login();
   public following: User[] = [];
+  public show: boolean;
 
-  constructor(private loginService: LoginService, private usersService: UsersService, private router: Router) { }
+  constructor(private loginService: LoginService, private usersService: UsersService, private router: Router, private navbarService: NavbarService) { }
 
   ngOnInit() {
+    this.navbarService.navbarIsOut.subscribe(next => {
+      this.show = next;
+    });
 
     this.usersService.following.subscribe((next) => {
       this.following = next;
