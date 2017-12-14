@@ -1,4 +1,14 @@
-<h1 *ngIf="isLoading">Loading...</h1>
+<div style="overflow-x: hidden; overflow-y: hidden;">
+  <div style="margin-top: 1rem;" class="row" *ngIf="isLoading">
+    <div class="col-sm-5">
+    </div>
+    <div class="col-sm-1">
+        <div class="loader"></div>
+    </div>
+    <div class="col-sm-5">
+    </div>
+  </div>
+</div>
 
 <div *ngIf="doesNotExist" class="container">
     <h3>The user you are looking for does not exist</h3>
@@ -36,7 +46,6 @@
 
             </b> {{!followhover ? 'Following' : 'Unfollow'}}
           </button>
-            <!-- <button class="dropdown-item" style="cursor: pointer;" type="button"><b class="fa fa-bell-slash"></b> Unfollow </button> -->
         </div>
     </div>
     </div>

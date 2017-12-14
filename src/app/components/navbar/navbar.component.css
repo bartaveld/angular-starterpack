@@ -58,11 +58,11 @@ b {
 
 .logout {
   margin-top: 0.75rem;
-  background: #ef5350;
+  background: #d32f2f;
 }
 
 .logout:hover {
-  background: #d32f2f;
+  background: #b71c1c;
   box-shadow: 0 0 0 0 #EEEEEE;
 
 }
